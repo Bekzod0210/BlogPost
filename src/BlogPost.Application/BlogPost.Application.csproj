@@ -20,7 +20,7 @@
 
   <ItemGroup>
     <Folder Include="UseCases\Admin\Queries\" />
-    <Folder Include="UseCases\User\Queries\" />
+    <Folder Include="UseCases\User\Query\" />
   </ItemGroup>
 
 </Project>
