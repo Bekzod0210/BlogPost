@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using BlogPost.Application.Abstactions;
+﻿using BlogPost.Application.Abstactions;
 using Microsoft.EntityFrameworkCore;
 
 namespace BlogPost.Application.UseCases.Admin.Commands

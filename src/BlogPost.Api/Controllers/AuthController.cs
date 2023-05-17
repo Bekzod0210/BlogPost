@@ -3,9 +3,7 @@ using BlogPost.Application.UseCases.Auth.Commands;
 using BlogPost.Application.UseCases.User.Command;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using XAct.Security;
 
 namespace BlogPost.Api.Controllers
 {
@@ -20,8 +18,8 @@ namespace BlogPost.Api.Controllers
             _mediator = mediator;
         }
 
-        [HttpPost("Admin/Login")]
-        public async Task<IActionResult> AdminLogin(LoginCommand command)   
+        [HttpPost("Login")]
+        public async Task<IActionResult> AdminLogin(LoginCommand command)
         {
             var token = await _mediator.Send(command);
             return Ok(token);
@@ -38,7 +36,7 @@ namespace BlogPost.Api.Controllers
         [Authorize(Policy = "AdminActions")]
         public async Task<IActionResult> UserDelete([FromRoute] int id)
         {
-            var num = await _mediator.Send(new UserDeleteByIdCommand() { Id = id});
+            var num = await _mediator.Send(new UserDeleteByIdCommand() { Id = id });
             return Ok(num);
         }
     }

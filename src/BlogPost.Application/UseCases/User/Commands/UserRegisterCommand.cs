@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using BlogPost.Application.Abstactions;
+﻿using BlogPost.Application.Abstactions;
 using BlogPost.Application.Exceptions;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,9 +6,9 @@ namespace BlogPost.Application.UseCases.User.Command
 {
     public class UserRegisterCommand : ICommand<int>
     {
-        public string Name { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public string UserName { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
     }
 
     public class UserRegisterCommandHandler : ICommandHandler<UserRegisterCommand, int>
@@ -28,8 +22,8 @@ namespace BlogPost.Application.UseCases.User.Command
             _hashService = hashService;
         }
         public async Task<int> Handle(UserRegisterCommand command, CancellationToken cancellationToken)
-        {            
-            if(await _dbContext.Users.AnyAsync(x => x.UserName == command.UserName))
+        {
+            if (await _dbContext.Users.AnyAsync(x => x.UserName == command.UserName))
             {
                 throw new UserNameExistException();
             }
@@ -46,7 +40,7 @@ namespace BlogPost.Application.UseCases.User.Command
 
             await _dbContext.Users.AddAsync(user, cancellationToken);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            
+
             return user.Id;
         }
     }

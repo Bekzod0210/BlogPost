@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BlogPost.Domain.Enums;
+﻿using BlogPost.Domain.Enums;
 
 namespace BlogPost.Domain.Entities
 {
@@ -15,13 +10,13 @@ namespace BlogPost.Domain.Entities
             Posts = new HashSet<Post>();
         }
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string UserName { get; set; }
-        public string PasswordHash { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public string UserName { get; set; } = string.Empty;
+        public string PasswordHash { get; set; } = string.Empty;
         public Role Role { get; set; }
         public DateTime CreatedAt { get; set; }
 
-        public ICollection<Blog> Blogs { get; set; }
-        public ICollection<Post> Posts { get; set; }
+        public ICollection<Blog>? Blogs { get; set; }
+        public ICollection<Post>? Posts { get; set; }
     }
 }

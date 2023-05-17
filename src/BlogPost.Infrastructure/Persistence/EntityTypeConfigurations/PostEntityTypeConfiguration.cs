@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BlogPost.Domain.Entities;
+﻿using BlogPost.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -22,6 +17,6 @@ namespace BlogPost.Infrastructure.Persistence.EntityTypeConfigurations
             builder.HasOne(p => p.Blog)
                 .WithMany(p => p.Posts)
                 .HasForeignKey(p => p.BlogId);
-            }
+        }
     }
 }
