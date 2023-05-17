@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
+﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 using BlogPost.Application.Abstactions;
 using BlogPost.Infrastructure.Configurations;
 using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
 using JwtRegisteredClaimNames = System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames;
 
@@ -22,7 +17,7 @@ namespace BlogPost.Infrastructure.Services
         {
             _jwtConfiguration = jwtConfiguration.Value;
         }
-            
+
         public string GetAccessToken(Claim[] userClaims)
         {
             var JWTClaims = new Claim[]
@@ -42,7 +37,7 @@ namespace BlogPost.Infrastructure.Services
                 _jwtConfiguration.ValidIssuer,
                 _jwtConfiguration.ValidAudience,
                 claims,
-                expires: DateTime.UtcNow.AddDays(3),
+                expires: DateTime.UtcNow.AddHours(1),
                 signingCredentials: credentials);
 
             var tokenHandler = new JwtSecurityTokenHandler();

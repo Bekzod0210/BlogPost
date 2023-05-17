@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BlogPost.Domain.Entities
+﻿namespace BlogPost.Domain.Entities
 {
     public class Post
     {
@@ -14,7 +8,7 @@ namespace BlogPost.Domain.Entities
         public string Status { get; set; } = string.Empty;
         public DateTime CreatedAt { get; set; }
 
-        public int BlogId { get; set; }
+        public int? BlogId { get; set; }
         public int UserId { get; set; }
 
         public Blog? Blog { get; set; }

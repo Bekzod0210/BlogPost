@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 using BlogPost.Application.Abstactions;
 using BlogPost.Domain.Enums;
 using BlogPost.Infrastructure.Persistence;
@@ -23,6 +19,7 @@ namespace BlogPost.Infrastructure
             services.AddDbContext<IAppDbContext, AppDbContext>(options
                 => options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddScoped<ICurrentUserService, CurrentUserService>();
             services.AddSingleton<IHashService, HashService>();
             services.AddScoped<ITokenService, JWTService>();
 
@@ -37,7 +34,7 @@ namespace BlogPost.Infrastructure
                         ValidateIssuerSigningKey = true,
                         ValidAudience = configuration["JWTConfiguration:ValidAudience"],
                         ValidIssuer = configuration["JWTConfiguration:ValidIssuer"],
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWTConfiguration:Secret"]))
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWTConfiguration:Secret"]!))
                     };
                 });
 
